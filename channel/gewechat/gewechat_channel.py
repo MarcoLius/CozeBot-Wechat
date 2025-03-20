@@ -131,10 +131,11 @@ class GeWeChatChannel(ChatChannel):
         try:
             data = self.client.set_callback(self.token, callback_url)
             logger.info(f"[gewechat] 设置回调地址: {data}")
-            if isinstance(data, dict) and data.get("ret") != 200:
+            if isinstance(data, dict) and data.get("ret") == 200:
+                logger.info(f"[gewechat] 设置回调地址成功: {callback_url}")
+            else:
                 logger.error(f"[gewechat] 设置回调地址失败: {data}")
                 return
-            logger.info(f"[gewechat] 设置回调地址成功: {callback_url}")
         except Exception as e:
             logger.error(f"[gewechat] 设置回调地址时发生错误: {str(e)}")
             return

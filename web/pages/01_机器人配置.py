@@ -87,7 +87,7 @@ config_path = os.path.join(project_root, "config.json")
 
 # 默认配置
 default_config = {
-    "accept_friend_commands": "",
+    "accept_friend_commands": "加好友",
     "always_reply_voice": False,
     "channel_type": "gewechat",
     "coze_api_base": "https://api.coze.cn",
@@ -164,7 +164,7 @@ try:
         # 使用可折叠区域显示配置
         with st.expander("Coze 配置", expanded=True):
             # 显示Coze相关配置
-            st.text_input("Coze API Base", value=config.get("coze_api_base", ""), key="coze_api_base",help="请输入Coze API Base")
+            st.text_input("Coze API Base", value=config.get("coze_api_base", ""), key="coze_api_base")
             st.text_input("Coze API Key", value=config.get("coze_api_key", ""), type="password", key="coze_api_key",help="请输入Coze API Key,在coze平台获取 https://www.coze.cn/open/oauth/pats")
             st.text_input("Coze Bot ID", value=config.get("coze_bot_id", ""), key="coze_bot_id",help="请输入Coze Bot ID,在coze平台获取 https://www.coze.cn/space/341****/bot/73428668*****")
             st.text_input("Coze Space ID", value=config.get("coze_space_id", ""), key="coze_space_id",help="Coze 工作空间ID")
@@ -172,13 +172,13 @@ try:
         
         # 微信配置 - 单聊
         with st.expander("微信单聊配置"):
-            st.text_input("单聊回复前缀", value=config.get("single_chat_reply_prefix", ""), key="single_chat_reply_prefix",help="私聊时自动回复的前缀，用于区分真人")
-            st.text_input("单聊回复后缀", value=config.get("single_chat_reply_suffix", ""), key="single_chat_reply_suffix",help="私聊时自动回复的后缀，\n 可以换行")
+            st.text_input("单聊回复前缀", value=config.get("single_chat_reply_prefix", ""), key="single_chat_reply_prefix",placeholder="私聊时自动回复的前缀，用于区分真人,例如：机器人")
+            st.text_input("单聊回复后缀", value=config.get("single_chat_reply_suffix", ""), key="single_chat_reply_suffix",placeholder="私聊时自动回复的后缀，例如：机器人")
         
         # 微信配置 - 群聊
         with st.expander("微信群聊配置"):
-            st.text_input("群聊前缀", value=", ".join(config.get("group_chat_prefix", [])), key="group_chat_prefix",help="群聊时包含该前缀则会触发机器人回复")
-            st.text_input("群聊白名单", value=", ".join(config.get("group_name_white_list", [])), key="group_name_white_list",help="群聊白名单,请输入群聊名称，多个群聊名称用逗号隔开")
+            st.text_input("群聊前缀", value=", ".join(config.get("group_chat_prefix", [])), key="group_chat_prefix",placeholder="群聊时包含该前缀则会触发机器人回复,例如：@机器人")
+            st.text_input("群聊白名单", value=", ".join(config.get("group_name_white_list", [])), key="group_name_white_list",placeholder="群聊白名单,请输入群聊名称,多个群聊名称用逗号隔开,例如:ChatGPT测试群,ChatGPT测试群2")
             
             no_need_at = config.get("no_need_at", "")
             no_need_at_value = False
@@ -192,9 +192,9 @@ try:
                         key="no_need_at",
                         help="选择是否在群聊中不需要@机器人也能触发回复")
             
-            st.text_input("群聊时包含该关键词则会触发机器人回复", value=config.get("group_chat_keyword", ""), key="group_chat_keyword",help="群聊时包含该关键词则会触发机器人回复")
-            st.text_input("群聊时自动回复的前缀", value=config.get("group_chat_reply_prefix", ""), key="group_chat_reply_prefix")
-            st.text_input("群聊时自动回复的后缀", value=config.get("group_chat_reply_suffix", ""), key="group_chat_reply_suffix")
+            st.text_input("群聊时包含该关键词则会触发机器人回复", value=config.get("group_chat_keyword", ""), key="group_chat_keyword",placeholder="群聊时包含该关键词则会触发机器人回复,例如：你好")
+            st.text_input("群聊时自动回复的前缀", value=config.get("group_chat_reply_prefix", ""), key="group_chat_reply_prefix",placeholder="群聊时自动回复的前缀,例如：机器人")
+            st.text_input("群聊时自动回复的后缀", value=config.get("group_chat_reply_suffix", ""), key="group_chat_reply_suffix",placeholder="群聊时自动回复的后缀,例如：机器人")
             
             group_at_off = config.get("group_at_off", "")
             group_at_off_value = False
@@ -210,11 +210,11 @@ try:
         
         # 渠道配置
         with st.expander("渠道配置"):
-            st.text_input("gewechat_app_id", value=config.get("gewechat_app_id", ""), key="gewechat_app_id",help="gewechat_app_id")
-            st.text_input("gewechat_token", value=config.get("gewechat_token", ""), key="gewechat_token",help="gewechat_token")
-            st.text_input("gewechat_base_url", value=config.get("gewechat_base_url", ""), key="gewechat_base_url",help="gewechat_base_url")
-            st.text_input("gewechat_callback_url", value=config.get("gewechat_callback_url", ""), key="gewechat_callback_url",help="gewechat_callback_url")
-            st.text_input("gewechat_download_url", value=config.get("gewechat_download_url", ""), key="gewechat_download_url",help="gewechat_download_url")
+            st.text_input("gewechat_app_id", value=config.get("gewechat_app_id", ""), key="gewechat_app_id",help="gewechat_app_id",placeholder="请勿配置，第一次运行自动生成")
+            st.text_input("gewechat_token", value=config.get("gewechat_token", ""), key="gewechat_token",help="gewechat_token",placeholder="请勿配置，第一次运行自动生成")
+            st.text_input("gewechat_base_url", value=config.get("gewechat_base_url", ""), key="gewechat_base_url",help="gewechat_base_url",placeholder="http://服务器 IP 地址:2531/v2/api")
+            st.text_input("gewechat_callback_url", value=config.get("gewechat_callback_url", ""), key="gewechat_callback_url",help="gewechat_callback_url",placeholder="http://服务器 IP 地址:9919/v2/api/callback/collect")
+            st.text_input("gewechat_download_url", value=config.get("gewechat_download_url", ""), key="gewechat_download_url",help="gewechat_download_url",placeholder="http://服务器 IP 地址:2532/download")
         
         # 语音配置
         with st.expander("语音配置"):
@@ -271,7 +271,7 @@ try:
         
         # 其他配置
         with st.expander("其他配置"):
-            st.text_input("自动接受好友请求的申请信息", value=config.get("accept_friend_commands", ""), key="accept_friend_commands",help="自动接受好友请求的申请信息")
+            st.text_input("自动接受好友请求的申请信息", value=config.get("accept_friend_commands", ""), key="accept_friend_commands",help="自动接受好友请求的申请信息",placeholder="自动接受好友请求的申请信息,例如：加好友")
         
         # 保存按钮 - 使用主要按钮样式
         if st.button("💾 保存配置", type="primary"):

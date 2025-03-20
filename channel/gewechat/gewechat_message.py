@@ -357,7 +357,7 @@ class GroupMessageHandler:
             'content': self._process_content()
         }
         return result
-    
+
     def _check_is_at(self):
         """检查是否被@"""
         msg_source = self.data.get('MsgSource', '')
@@ -502,13 +502,18 @@ class GeWeChatMessage(ChatMessage):
         
         if msg_type == 1:  # 文本消息
             self.ctype, self.content = MessageTypeHandler.handle_text(self.msg['Data'])
-            
+            logger.info(f"[gewechat] text message: {self.content}")
         elif msg_type == 34:  # 语音消息
             self.ctype, self.content = MessageTypeHandler.handle_voice(self.msg['Data'])
-            
         elif msg_type == 3:  # 图片消息
-            self.ctype, self.content = MessageTypeHandler.handle_image(self.msg['Data'], self.msg_id)
-            self._prepare_fn = lambda: self.file_handler.download_image(self.msg['Data'], self.content)
+            if self.is_group:
+                # 群聊图片不处理
+                logger.info(f"[gewechat] Ignoring image from group chat: {self.from_user_id}")
+                self._prepare_fn = None  # 清除准备函数
+            else:
+                # 私聊图片处理（保持原有逻辑）
+                self.ctype, self.content = MessageTypeHandler.handle_image(self.msg['Data'], self.msg_id)
+                self._prepare_fn = lambda: self.file_handler.download_image(self.msg['Data'], self.content)
             
         elif msg_type == 49:  # 引用消息，小程序，公众号等
             self._handle_reference_message()

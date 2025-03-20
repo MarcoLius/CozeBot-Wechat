@@ -31,7 +31,7 @@ available_setting = {
     # Bot触发配置
     "single_chat_prefix": ["bot", "@bot"],  # 私聊时文本需要包含该前缀才能触发机器人回复
     "single_chat_reply_prefix": "[bot] ",  # 私聊时自动回复的前缀，用于区分真人
-    "single_chat_reply_suffix": "",  # 私聊时自动回复的后缀，\n 可以换行
+    "single_chat_reply_suffix": "[机器人]",  # 私聊时自动回复的后缀，\n 可以换行
     "accept_friend_commands": ["加好友"],  # 自动接受好友请求的申请信息
     "group_chat_prefix": ["@bot"],  # 群聊时包含该前缀则会触发机器人回复
     "no_need_at": False,  # 群聊回复时是否不需要艾特

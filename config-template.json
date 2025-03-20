@@ -7,11 +7,10 @@
   "coze_voice_id": "", 
   "coze_space_id": "",
   "single_chat_prefix": [
-    "bot",
-    "@bot"
+    ""
   ],
   
-  "single_chat_reply_prefix": "[bot] ",
+  "single_chat_reply_prefix": "",
 
   "group_chat_prefix": [
     "@bot"

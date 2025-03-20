@@ -33,6 +33,8 @@ class CozeVoice(Voice):
             logger.error(f"Failed to create speech for voice: {self.coze_voice_id}")
             return Reply(ReplyType.ERROR, "我暂时还无法听清您的语音，请稍后再试吧~")
 
-    def VoiceToText(self, voiceFile):
-        text=self.coze.audio.transcriptions.create(file=voiceFile)
+    def voiceToText(self, voiceFile):
+        result=self.coze.audio.transcriptions.create(file=voiceFile)
+        text=result.text
+        logger.info(f"Transcriptions of voice: {voiceFile} to text: {text}")
         return Reply(ReplyType.TEXT, text)
