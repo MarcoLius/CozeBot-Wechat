@@ -65,7 +65,7 @@ class CozeBot(Bot):
                 
             except Exception as e:
                 logger.error(f"图片处理失败: {str(e)}")
-                return None, Reply(ReplyType.TEXT, "图片上传失败")
+                # return None, Reply(ReplyType.TEXT, "图片上传失败")
             
         #分享链接处理
         if context.type == ContextType.SHARING:
