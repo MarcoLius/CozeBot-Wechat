@@ -2,6 +2,10 @@ import streamlit as st
 import json
 import os
 
+# 登录验证检查
+if "password_correct" not in st.session_state or not st.session_state["password_correct"]:
+    st.switch_page("Home.py")  # 未登录则重定向到首页
+
 # 添加自定义CSS样式，与home.py保持一致
 st.markdown("""
 <style>
@@ -147,8 +151,8 @@ try:
         """, unsafe_allow_html=True)
         
         # 添加GitHub链接
-        st.markdown("### 项目链接")
-        st.markdown("[🔗 GitHub 项目主页](https://github.com/JC0v0/Coze-on-Wechat)")
+        st.markdown("### 联系作者")
+        st.markdown("[🔗 GitHub作者主页](https://github.com/MarcoLius)")
         
         # 添加刷新按钮
         if st.button("🔄 刷新页面", key="refresh_button"):
@@ -315,7 +319,7 @@ try:
         # 页脚
         st.markdown("""
         <div class="footer">
-            <p>Coze on WeChat © 2025 | 如果我的项目对您有帮助请点一个star吧~</p>
+            <p>Coze on WeChat © 2025 | Developed by MarcoLius~</p>
         </div>
         """, unsafe_allow_html=True)
         

@@ -154,8 +154,8 @@ class CozeBot(Bot):
             if replies:
                 return replies[0] if len(replies) == 1 else replies
             logger.error("未找到有效回复内容")
-            return Reply(ReplyType.TEXT, "未能获取到回复")
+            # return Reply(ReplyType.TEXT, "未能获取到回复")
             
         except Exception as e:
             logger.error(f"消息处理失败: {str(e)}")
-            return Reply(ReplyType.TEXT, "请求处理超时")
+            # return Reply(ReplyType.TEXT, "请求处理超时")

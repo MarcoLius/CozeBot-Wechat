@@ -7,6 +7,7 @@ services:
     restart: always
     ports:
       - "8501:8501"
+      - "4488:4488"
     volumes:
       - ./config.json:/app/config.json
 
