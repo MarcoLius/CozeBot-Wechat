@@ -91,6 +91,46 @@ pip3 install -r requirements.txt
 ```bash
 cp config.json.example config.json          # 如果你使用web启动，则不需要配置
 ```
+然后在`config.json`中填入配置，以下是对默认配置的说明，可根据需要进行自定义修改（请去掉注释）：
+ ```json
+ {
+   // Bot 相关配置
+   "channel_type": "gewechat",
+   "model": "coze",
+   // coze 相关配置
+   "coze_api_base": "https://api.coze.cn",
+   "coze_api_key": "YOUR API KEY",
+   "coze_bot_id": "",    //智能体ID。进入智能体的开发页面，开发页面 URL 中 bot 参数后的数字就是智能体ID。例如https://www.coze.cn/space/341****/bot/73428668*****，bot_id 为73428668*****。
+   "coze_voice_id": "",  //音色的 ID，具体教程前往 https://www.coze.cn/open/docs/developer_guides/list_voices 查看
+   "coze_space_id": "",   //空间的 ID
+   // 私聊回复的前缀，用于区分真人
+   "single_chat_prefix": [
+     "bot",
+     "@bot"
+   ],
+ 
+   "single_chat_reply_prefix": "[bot] ",
+   // 群组聊天前缀，用于区分真人
+   "group_chat_prefix": [
+     "@bot"
+   ],
+   "group_name_white_list": [
+     "ChatGPT测试群",
+     "ChatGPT测试群2"
+   ],
+   // 语音回复配置
+   "speech_recognition": false,
+   "group_speech_recognition": false,
+   "text_to_voice": "coze",
+   "voice_reply_voice": false,
+   // gewechat 相关配置
+   "gewechat_app_id": "",
+   "gewechat_base_url": "http://127.0.0.1:2531/v2/api",  //服务器需开放对应端口
+   "gewechat_callback_url": "http://127.0.0.1:9919/v2/api/callback/collect",    //服务器需开放对应端口
+   "gewechat_download_url": "http://127.0.0.1:2532/download",      //服务器需开放对应端口
+   "gewechat_token": ""
+ }
+```
 
 ### 3. 运行项目
 
